@@ -1,0 +1,73 @@
+------------------------------------------------------------------------------------------
+1 - FIND THE 2ND HIGHEST SALARY IN EMP TABLE ?
+Ans  : SELECT max(salary) from emp 
+      where sal
+      not in(SELECT max(salary) from emp);
+
+-----------------------------------------------------------------------------------------
+2- DISPLAY HIGHEST PAID EMPLOYEE IN EACH DEPARTMENT ?
+Ans : SELECT max(salary) ,deptno
+      from emp groupby(deptno);
+
+-----------------------------------------------------------------------------------------
+3-DISPLAY ALTERNATE RECORDS IN A TABLE ?
+Ans  : SELECT * from
+       (SELECT ename, salary, deptno, rownum rn
+        from emp
+        order by rn)
+        where mod(rn,2)==0;
+      
+-----------------------------------------------------------------------------------------
+4 : FIND DUPLICATE VALUES AND ITS FREQUENCY OF A COLUMN ?
+Ans  : SELECT ename, count(*)
+       from emp
+       groupby ename
+       having count(*) > 1;
+
+---------------------------------------------------------------------------------------
+5 : PATTERN MATCHING IN SQL ?
+a)  Display the employee names whose name startswith 'M' ?
+Ans : SELECT ename from emp
+      where ename like 'M%' ;
+      
+b) Display the employee names whose name endswith 'N' ?
+Ans : SELECT ename from emp
+      where ename like '%N' ;
+      
+c) Display the name of all employee employees having 'M' at any position in their name ?
+Ans : SELECT ename from emp
+      where ename like '%M%' ;
+      
+d) Display the name of all employee employees whose name doesn't contain 'M' anywhere ?
+Ans : SELECT ename from emp
+      where ename not like '%M%' ;
+      
+---------------------------------------------------------------------------------------------
+PATTERN MATCHING
+a) Display he names of all employees whose name only contain 4 letters ?
+Ans : SELECT ename from
+      emp where ename like '____' ;
+      
+b) Display the names of employees whose name contains 
+   i)  2nd letter 'L' :
+       SELECT ename from emp 
+       where ename like '_L%' ;
+   
+   ii) 4th letter as 'M' ?
+        SELECT ename from emp 
+        where ename like '___M%' ;
+        
+ c) Display the employee names and hire dates for the employees joined in the month of december ?
+ Ans : SELECT ename, hiredate from emp
+       where hiredate like '%DEC%';
+       
+ d) Display the names of employees contains exactly 2 L's  ?
+ Ans : SELECT ename from emp
+       where ename like '%LL%' ;
+
+e) Display the names of employees whose name startswith 'J' and endswith 'W' ?
+Ans : SELECT ename from emp 
+      where ename like 'J%W' ;
+      
+-------------------------------------------------------------------------------------------------------------
+
